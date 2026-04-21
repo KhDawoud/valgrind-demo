@@ -34,13 +34,15 @@ void printList(Node* head) {
 }
 
 void freeList(Node* head) {
-  Node* temp = head;
+  Node* temp = head->next;
 
   while (temp != nullptr) {
     Node* next = temp->next;
     delete temp;
     temp = next;
   }
+  head->value = 0;
+  head->next = nullptr;
 }
 
 int main() {
@@ -64,9 +66,9 @@ int main() {
   arr[0] = 1;
   arr[1] = 2;
   arr[2] = 3;
-  arr[5] = 999;
 
   delete[] arr;
-
+  delete list;
+  delete leakNode;
   return 0;
 }
